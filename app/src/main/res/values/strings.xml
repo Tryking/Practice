@@ -1,7 +1,12 @@
 <resources>
     <string name="app_name">Practice</string>
     <string name="record">视频录制</string>
-    <string name="view">查看文件</string>
+    <string name="view">查看视频库</string>
     <string name="start">开始录制</string>
     <string name="stop">结束录制</string>
+    <string name="nothing">还未录制任何视频</string>
+    <string name="video_name">录音名字</string>
+    <string name="video_duration">录制时长</string>
+    <string name="video_size">录制大小</string>
+    <string name="video_time">录制时间</string>
 </resources>

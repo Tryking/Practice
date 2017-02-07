@@ -14,6 +14,7 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
             + "id integer primary key autoincrement, "
             + "name text, "
             + "time text, "
+            + "duration text, "
             + "size integer)";
     private Context mContext;
 
