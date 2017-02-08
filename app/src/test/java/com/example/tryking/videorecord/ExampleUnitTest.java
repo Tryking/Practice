@@ -1,4 +1,4 @@
-package com.example.tryking.practice;
+package com.example.tryking.videorecord;
 
 import org.junit.Test;
 

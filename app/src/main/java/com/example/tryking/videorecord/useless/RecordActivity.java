@@ -1,4 +1,4 @@
-package com.example.tryking.practice.useless;
+package com.example.tryking.videorecord.useless;
 
 import android.media.MediaRecorder;
 import android.os.Environment;
@@ -10,7 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
-import com.example.tryking.practice.R;
+import com.example.tryking.videorecord.R;
 
 import java.io.File;
 

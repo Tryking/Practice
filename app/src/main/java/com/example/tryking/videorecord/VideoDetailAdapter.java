@@ -1,6 +1,5 @@
-package com.example.tryking.practice;
+package com.example.tryking.videorecord;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;

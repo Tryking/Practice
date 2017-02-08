@@ -1,7 +1,6 @@
-package com.example.tryking.practice;
+package com.example.tryking.videorecord;
 
 import android.graphics.Bitmap;
-import android.graphics.drawable.Drawable;
 
 /**
  * Created by Tryking on 2017/2/7.

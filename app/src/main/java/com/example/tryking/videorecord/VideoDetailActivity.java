@@ -1,4 +1,4 @@
-package com.example.tryking.practice;
+package com.example.tryking.videorecord;
 
 
 import android.app.Activity;
@@ -83,8 +83,9 @@ public class VideoDetailActivity extends Activity {
 
     //ToolBar设置
     private void initToolBar() {
-        toolbar.setTitle(getResources().getString(R.string.app_name));
+        toolbar.setTitle(getResources().getString(R.string.video_library));
         toolbar.setTitleTextColor(Color.WHITE);
         toolbar.setBackgroundColor(Color.parseColor("#FF4081"));
+//        toolbar.setSubtitle(getResources().getString(R.string.video_library));
     }
 }

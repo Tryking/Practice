@@ -1,4 +1,4 @@
-package com.example.tryking.practice;
+package com.example.tryking.videorecord;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -9,7 +9,6 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.View;
-import android.view.ViewGroup;
 
 /**
  * Created by Tryking on 2017/2/7.

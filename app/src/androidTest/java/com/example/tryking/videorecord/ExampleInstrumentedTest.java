@@ -1,4 +1,4 @@
-package com.example.tryking.practice;
+package com.example.tryking.videorecord;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -23,7 +23,7 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("com.example.tryking.practice", appContext.getPackageName());
+        assertEquals("com.example.tryking.com.tryking.videorecord", appContext.getPackageName());
     }
 
     @Test

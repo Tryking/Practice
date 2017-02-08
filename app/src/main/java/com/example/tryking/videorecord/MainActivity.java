@@ -1,7 +1,8 @@
-package com.example.tryking.practice;
+package com.example.tryking.videorecord;
 
 import android.app.Activity;
 import android.content.ContentValues;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.AssetFileDescriptor;
 import android.database.Cursor;
@@ -12,12 +13,15 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.Toast;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.orhanobut.logger.Logger;
 
@@ -44,6 +48,12 @@ public class MainActivity extends Activity implements View.OnClickListener {
     private long fileSize;//录制视频的大小
     private ImageView ivPlay;
     private Toolbar toolbar;
+    private TextView tvName;
+    private ImageView ivEdit;
+    private LinearLayout llNmae;
+    private EditText modifyName;
+    private String currentTime;
+    private EditText etName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,9 +69,13 @@ public class MainActivity extends Activity implements View.OnClickListener {
         view = (Button) this.findViewById(R.id.view);
         ivPreview = (ImageView) this.findViewById(R.id.iv_preview);
         ivPlay = (ImageView) this.findViewById(R.id.iv_play);
+        tvName = (TextView) this.findViewById(R.id.tv_name);
+        ivEdit = (ImageView) this.findViewById(R.id.iv_edit);
+        llNmae = (LinearLayout) this.findViewById(R.id.ll_name);
         ivPlay.setOnClickListener(this);
         record.setOnClickListener(this);
         view.setOnClickListener(this);
+        ivEdit.setOnClickListener(this);
 
         initToolBar();
     }
@@ -97,6 +111,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
             if (resultCode != RESULT_OK) {
                 ivPlay.setVisibility(View.GONE);
                 ivPreview.setVisibility(View.GONE);
+                llNmae.setVisibility(View.GONE);
                 return;
             }
             try {
@@ -148,12 +163,15 @@ public class MainActivity extends Activity implements View.OnClickListener {
                     ivPreview.setImageBitmap(bitmap);
                     ivPlay.setVisibility(View.VISIBLE);
                     ivPreview.setVisibility(View.VISIBLE);
+                    llNmae.setVisibility(View.VISIBLE);
+                    tvName.setText(Utils.getFileNameByPath(recordFile.getAbsolutePath()));
 
+                    currentTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new
+                            Date(System.currentTimeMillis()));
                     //存储到数据库
                     ContentValues values = new ContentValues();
                     values.put("name", recordFile.getAbsolutePath());
-                    values.put("time", new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new
-                            Date(System.currentTimeMillis())));
+                    values.put("time", currentTime);
                     values.put("duration", time);
                     values.put("size", fileSize);
                     db.insert("Video", null, values);
@@ -192,6 +210,37 @@ public class MainActivity extends Activity implements View.OnClickListener {
 //                Toast.makeText(MainActivity.this, "查看视频库", Toast.LENGTH_SHORT).show();
                 Intent intent3 = new Intent(MainActivity.this, VideoDetailActivity.class);
                 startActivity(intent3);
+                break;
+            case R.id.iv_edit://修改当前录制视频的文件名
+                modifyName = (EditText) getLayoutInflater().inflate(R.layout.dialog_modify_name,
+                        null);
+                etName = (EditText) modifyName.findViewById(R.id.et_name);
+                new AlertDialog.Builder(this)
+                        .setTitle("修改文件名")
+                        .setView(modifyName)
+                        .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                //修改文件的名字
+                                String newName = recordFile.getAbsolutePath().replace
+                                        (Utils.getFileNameByPath(recordFile.getAbsolutePath()),
+                                                etName.getText().toString() + ".mp4");
+                                Logger.e("就名字：" + recordFile.getAbsolutePath() + "|||新名字：" +
+                                        newName);
+                                recordFile.renameTo(new File(newName));
+                                //修改数据库中的文件名，根据存储的时间，即录制时间
+                                ContentValues values = new ContentValues();
+                                values.put("name", newName);
+                                db.update("Video", values, "time = ?", new String[]{currentTime});
+                                tvName.setText(etName.getText().toString() + ".mp4");
+                            }
+                        })
+                        .setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                            }
+                        })
+                        .create().show();
                 break;
         }
     }

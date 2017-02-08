@@ -4,7 +4,7 @@
                 android:id="@+id/activity_main"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                tools:context="com.example.tryking.practice.MainActivity">
+                tools:context="com.example.tryking.videorecord.MainActivity">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolBar"
@@ -38,15 +38,42 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@+id/view">
+            android:layout_below="@+id/view"
+            android:layout_marginTop="10dp">
+
+            <LinearLayout
+                android:id="@+id/ll_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/tv_name"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:padding="10dp"
+                    android:text="@string/video_name"/>
+
+                <ImageView
+                    android:id="@+id/iv_edit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="20dp"
+                    android:src="@drawable/ic_border_color_black_18dp"/>
+            </LinearLayout>
 
             <ImageView
                 android:id="@+id/iv_preview"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_below="@+id/ll_name"
                 android:layout_centerHorizontal="true"
-                android:padding="20dp"
-                android:visibility="gone"/>
+                android:layout_margin="15dp"
+                android:visibility="visible"/>
 
             <ImageView
                 android:id="@+id/iv_play"

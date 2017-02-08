@@ -1,8 +1,7 @@
-package com.example.tryking.practice;
+package com.example.tryking.videorecord;
 
 import android.graphics.Bitmap;
 import android.media.ThumbnailUtils;
-import android.provider.MediaStore;
 
 import java.text.DecimalFormat;
 

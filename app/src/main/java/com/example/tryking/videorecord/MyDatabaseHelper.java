@@ -1,4 +1,4 @@
-package com.example.tryking.practice;
+package com.example.tryking.videorecord;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
